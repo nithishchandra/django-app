@@ -1,0 +1,59 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>Student info</h2>
+  <p>This is a table for the student info</p>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+          <th>Address</th>
+          <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for row in data %}
+    <tr>
+        <td>{{ row.id }}</td>
+        <td>{{ row.stu_name }}</td>
+        <td>{{ row.stu_email }}</td>
+        <td>{{ row.stu_address }}</td>
+        <td>
+            <span><a class="btn btn-info btn-xs" href="/student/view/{{ row.id }}">VIEW</a></span>
+            <span><a class="btn btn-primary btn-xs" href="/student/update/{{ row.id }}">UPDATE</a></span>
+            <span><a class="btn btn-warning btn-xs delete" href="/student/delete/{{ row.id }}">DELETE</a></span>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+<script>
+    $(document).ready(function(){
+    $('.delete').click(function(){
+    if(confirm('Are you sure to delete the item?')){
+    return true;
+    }
+    else {
+    return false;
+    }
+    });
+    });
+
+</script>
+{% endblock %}

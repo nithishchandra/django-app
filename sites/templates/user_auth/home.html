@@ -1,0 +1,51 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% block content %}
+<style>
+    .internal_css{
+    color:green;
+</style>
+
+<script>
+    function alertfunc(){
+       alert('am in alertfunc');
+    }
+</script>
+
+<link href="{% static 'css/new.css' %}" rel="stylesheet">
+
+<script src="{% static 'js/new.js' %}" type="text/javascript"></script>
+
+
+
+<img src="{% static 'images/mypic.JPG' %}" height="200" width="200"><br>
+<img src="{% static 'images/new.png' %}" height="200" width="200">
+<button onclick="clickMe()"> button1</button>
+<button onclick="clickMe2()"> button2</button>
+<button onclick="alertfunc()"> button3</button>
+
+<h3 style="color:green;"> inline css</h3>
+<h3 class="internal_css"> Internal css</h3>
+<h3 class="internal_css"> pardhu is</h3>
+
+<h3 class="test_class">Hello</h3>
+<h3 class="test_class2">Nithish</h3>
+
+{% if request.user.username %}
+
+<h3>Welcome: {{ request.user.username }}</h3>
+<h3>Email : {{ request.session.email }}</h3>
+<h3>Phone number : {{ request.session.phone }}</h3>
+<h3>City : {{ request.session.city }}</h3>
+
+<h4><a href="/sites/logout">logout({{ request.user.username }})</a></h4>
+
+{% else %}
+
+<h4><a href="/site/signin">Please click here to login</a></h4>
+
+{% endif %}
+
+{% endblock %}
